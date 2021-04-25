@@ -3,7 +3,7 @@
   "description": "**Projet web :** interface utilisateur permettant l'initialisation du bot.",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "nodemon -r dotenv/config index.js",
     "start": "node index.js"
   },
   "repository": {
@@ -16,7 +16,10 @@
   },
   "homepage": "https://github.com/B4va/alternbot-web#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "pg": "^8.6.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"
