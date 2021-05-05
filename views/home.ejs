@@ -40,15 +40,46 @@
 </header>
 
 <div id="head-line" class="container bg-light"></div>
-<div id="main" class="container p-4 bg-white">
-    <!-- body -->
+<div id="main" class="container p-4 bg-white col-8 offset-2 mt-4">
+
+    <% if (error) { %>
+    <div class="alert alert-danger mt-3" role="alert">
+        <span class="font-weight-bold">Erreur de saisie :</span> Vérifier l'URL de l'emploi du temps ; aucun champ ne peut être vide.
+    </div>
+    <% } %>
+
+    <form class="m-3" method="post" action="/">
+        <div class="form-group">
+            <label for="promotionName">Nom de la promotion</label>
+            <input type="text" class="form-control" id="promotionName" placeholder="Ex : Licence Pro Génie Lociciel 2020" name="promotionName">
+        </div>
+        <div class="form-group">
+            <label for="scheduleUrl">URL de l'emploi du temps</label>
+            <input type="text" class="form-control" id="scheduleUrl" placeholder="url" name="scheduleUrl">
+            <small id="scheduleUrlHelp" class="form-text text-muted">
+                <a href="https://dptinfo.iutmetz.univ-lorraine.fr/lna/accueil.php?" class="text-dark font-weight-bold">Livret étudiant</a>
+                > Emploi du temps > QRCode
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="serverId">Identifiant du serveur Discord</label>
+            <input type="text" class="form-control" id="serverId" placeholder="id" name="serverId">
+            <small id="serverIdHelp" class="form-text text-muted">
+                Paramètres du serveur > Widget > Identifiant du serveur
+            </small>
+        </div>
+        <div class="form-group text-center mt-4">
+            <button type="submit" class="btn btn-outline-dark mt-4">Lancer Altern'Bot</button>
+        </div>
+    </form>
+
 </div>
 <div id="foot-line" class="containerbg-light"></div>
 
 <footer class="page-footer font-small blue pt-4">
     <div class="container p-4 text-center bg-white">
         <p class="text-secondary">Conduite de projet - IUT de METZ - 2021</p>
-        <p><a href="https://github.com/B4va/alternbot-app">Documentation</a> </p>
+        <p><a href="https://github.com/B4va/alternbot-app" class="text-dark font-weight-bold">Documentation</a> </p>
     </div>
 </footer>
 
