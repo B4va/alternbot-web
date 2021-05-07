@@ -21,7 +21,10 @@ const {DB_HOST, DB_NAME, DB_USER, DB_PASSWORD, DB_PORT} = process.env;
 const connectionString = `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`;
 console.log('DB :', connectionString);
 const client = new Client({
-    connectionString: connectionString
+    connectionString: connectionString,
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
 client.connect();
 
