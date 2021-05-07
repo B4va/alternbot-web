@@ -41,8 +41,9 @@ app.get('/', async (req, res) => {
 app.post('/', async (req, res) => {
     const {promotionName, scheduleUrl, serverId} = req.body;
     try {
-        const reqTestUrl = await axios.get(scheduleUrl);
         console.log(promotionName, serverId);
+        const reqTestUrl = await axios.get(scheduleUrl);
+        console.log('Requête EDT :', reqTestUrl.status === 200 ? 'OK' : reqTestUrl.status);
         if (reqTestUrl.data.startsWith('BEGIN:VCALENDAR') && promotionName !== '' && serverId !== '' && scheduleUrl !== '') {
             await client.query("INSERT INTO schedules (promotion, url) VALUES ($1, $2)", [promotionName, scheduleUrl]);
             const scheduleId = await client.query("SELECT id FROM schedules WHERE url = $1", [scheduleUrl]);
