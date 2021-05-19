@@ -49,7 +49,7 @@ app.post('/', async (req, res) => {
         console.log('Requête EDT :', reqTestUrl.status === 200 ? 'OK' : reqTestUrl.status);
         if (reqTestUrl.data.startsWith('BEGIN:VCALENDAR') && promotionName !== '' && serverId !== '' && scheduleUrl !== '') {
             await client.query("INSERT INTO schedules (promotion, url) VALUES ($1, $2)", [promotionName, scheduleUrl]);
-            const scheduleId = await client.query("SELECT id FROM schedules WHERE url = $1", [scheduleUrl]);
+            const scheduleId = await client.query("SELECT id FROM schedules WHERE url = $1 AND promotion = $2", [scheduleUrl, promotionName]);
             await client.query("INSERT INTO servers (reference, schedule_id) VALUES ($1, $2)", [serverId, scheduleId.rows[0].id])
             res.redirect(`https://discord.com/oauth2/authorize?client_id=${process.env.BOT_ID}&scope=bot&permissions=268946512`)
         } else {
